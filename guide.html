@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>사용설명서 — 재물손해사정사 학습노트</title>
+<meta name="description" content="재물손해사정사 학습노트 설치 가이드와 사용설명서">
+<meta name="theme-color" content="#11705f">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap">
+<style>
+  :root{
+    color-scheme: light;
+    --page:#f7f7f5; --surface:#ffffff; --sunk:#f0efec;
+    --ink:#141413; --ink2:#54534e; --muted:#8a8880;
+    --line:#e3e2dc; --border:rgba(20,20,19,0.10);
+    --accent:#11705f; --accent-soft:#e2f1ed; --accent-ink:#0b5447;
+    --ok:#1a7f4b; --ok-soft:#e2f2e9;
+    --am:#a8710a; --am-soft:#fbf0d9;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--page); color:var(--ink);
+    font-family:"Noto Sans KR",-apple-system,BlinkMacSystemFont,sans-serif;
+    font-size:15px; line-height:1.7; -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:0 18px 64px;}
+
+  header.top{padding:26px 0 18px; border-bottom:1px solid var(--line); margin-bottom:26px;}
+  header.top h1{margin:0 0 6px; font-size:1.3rem; font-weight:800; letter-spacing:-0.02em;}
+  header.top p{margin:0; color:var(--muted); font-size:0.84rem;}
+  header.top a.back{display:inline-block; margin-top:12px; font-size:0.8rem; font-weight:700; color:var(--accent); text-decoration:none;}
+
+  h2{
+    margin:34px 0 12px; font-size:1.02rem; font-weight:800; letter-spacing:-0.01em;
+    padding-left:11px; border-left:3px solid var(--accent);
+  }
+  h3{margin:20px 0 8px; font-size:0.92rem; font-weight:700;}
+  p{margin:8px 0;}
+
+  .card{background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:12px 0;}
+
+  ol,ul{margin:8px 0; padding-left:20px;}
+  li{margin:5px 0;}
+
+  .scroller{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:12px 0;}
+  table{border-collapse:collapse; width:100%; min-width:420px; font-size:0.86rem; background:var(--surface);}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:left; vertical-align:top;}
+  th{background:var(--sunk); font-weight:700; white-space:nowrap;}
+
+  .tip{background:var(--accent-soft); border-radius:10px; padding:13px 15px; margin:12px 0; font-size:0.88rem; color:var(--accent-ink);}
+  .tip .h{display:block; font-weight:800; margin-bottom:4px;}
+  .warn{background:var(--am-soft); border-radius:10px; padding:13px 15px; margin:12px 0; font-size:0.88rem; color:#7a5207;}
+  .ok{background:var(--ok-soft); border-radius:10px; padding:13px 15px; margin:12px 0; font-size:0.88rem; color:#13603a;}
+
+  .url{
+    display:block; background:var(--ink); color:#fff; border-radius:10px;
+    padding:13px 16px; margin:14px 0; font-size:0.95rem; font-weight:700;
+    text-align:center; text-decoration:none; word-break:break-all;
+  }
+
+  .steps{counter-reset:s; list-style:none; padding:0; margin:12px 0;}
+  .steps li{
+    counter-increment:s; position:relative; padding:12px 14px 12px 46px;
+    background:var(--surface); border:1px solid var(--border); border-radius:10px; margin:8px 0;
+  }
+  .steps li::before{
+    content:counter(s); position:absolute; left:13px; top:12px;
+    width:22px; height:22px; border-radius:50%; background:var(--accent); color:#fff;
+    font-size:0.76rem; font-weight:800; display:flex; align-items:center; justify-content:center;
+  }
+  .steps li b{color:var(--ink);}
+
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:12px 0;}
+  @media(max-width:560px){ .grid{grid-template-columns:1fr;} }
+  .grid .box{background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:14px 16px;}
+  .grid .box h3{margin-top:0;}
+
+  .stat{display:flex; flex-wrap:wrap; gap:10px; margin:14px 0;}
+  .stat div{
+    flex:1 1 120px; background:var(--surface); border:1px solid var(--border);
+    border-radius:10px; padding:12px 14px; text-align:center;
+  }
+  .stat b{display:block; font-size:1.25rem; font-weight:800; color:var(--accent); letter-spacing:-0.02em;}
+  .stat span{font-size:0.76rem; color:var(--muted); font-weight:600;}
+
+  kbd{background:var(--sunk); border:1px solid var(--line); border-radius:5px; padding:1px 6px; font-size:0.82rem; font-family:inherit; font-weight:700;}
+  footer{margin-top:44px; padding-top:18px; border-top:1px solid var(--line); font-size:0.8rem; color:var(--muted);}
+</style>
+</head>
+<body>
+<div id="gateOverlay" style="position:fixed;inset:0;z-index:99999;background:#f7f7f5;display:flex;align-items:center;justify-content:center;padding:24px;box-sizing:border-box;font:14px -apple-system,BlinkMacSystemFont,'Noto Sans KR',sans-serif;">
+  <div style="width:100%;max-width:320px;text-align:center;">
+    <div style="width:64px;height:64px;margin:0 auto 18px;border-radius:16px;background:#11705f;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.35rem;font-weight:800;letter-spacing:-0.03em;">재물</div>
+    <h1 style="margin:0 0 6px;font-size:1.05rem;font-weight:800;color:#141413;letter-spacing:-0.02em;">재물손해사정사 학습노트</h1>
+    <p style="margin:0 0 22px;font-size:0.8rem;color:#6b6a66;line-height:1.5;">비공개 자료입니다.<br>4자리 비밀번호를 입력하세요.</p>
+    <input id="gatePin" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off"
+      style="width:100%;box-sizing:border-box;padding:14px 12px;font-size:1.5rem;text-align:center;letter-spacing:0.5em;text-indent:0.5em;border:1.5px solid #dcdbd6;border-radius:12px;background:#fff;color:#141413;outline:none;-webkit-appearance:none;">
+    <div id="gateMsg" style="min-height:18px;margin-top:10px;font-size:0.75rem;font-weight:700;color:#c0392b;"></div>
+    <button id="gateBtn" style="margin-top:6px;width:100%;padding:12px;font-size:0.9rem;font-weight:700;color:#fff;background:#11705f;border:none;border-radius:12px;cursor:pointer;font-family:inherit;">열기</button>
+  </div>
+</div>
+<script>
+(function(){
+  var K="jmsjs-gate-v1", H=221893399;
+  function hash(s){var x=5381;for(var i=0;i<s.length;i++){x=((x*33)^s.charCodeAt(i))>>>0;}return x;}
+  var ov=document.getElementById("gateOverlay"),
+      pin=document.getElementById("gatePin"),
+      msg=document.getElementById("gateMsg"),
+      btn=document.getElementById("gateBtn");
+  function open(){ try{localStorage.setItem(K,"1");}catch(e){} ov.parentNode.removeChild(ov); document.documentElement.style.overflow=""; }
+  var ok=false; try{ ok = localStorage.getItem(K)==="1"; }catch(e){}
+  if(ok){ open(); return; }
+  document.documentElement.style.overflow="hidden";
+  function tryPin(){
+    var v=(pin.value||"").trim();
+    if(hash("shsjs::"+v)===H){ open(); }
+    else { msg.textContent="비밀번호가 맞지 않습니다."; pin.value=""; pin.focus(); }
+  }
+  pin.addEventListener("input",function(){ msg.textContent=""; if(pin.value.length===4) tryPin(); });
+  pin.addEventListener("keydown",function(e){ if(e.key==="Enter") tryPin(); });
+  btn.addEventListener("click",tryPin);
+  setTimeout(function(){ try{pin.focus();}catch(e){} },100);
+})();
+</script>
+<div class="wrap">
+
+  <header class="top">
+    <h1>재물손해사정사 학습노트 — 사용설명서</h1>
+    <p>설치하는 법과 쓰는 법. 2분이면 다 읽습니다.</p>
+    <a class="back" href="./">← 학습노트로 돌아가기</a>
+  </header>
+
+  <h2>0. 이게 뭔가요</h2>
+  <div class="card">
+    <p>재물손해사정사 <b>2차 시험</b>을 준비하는 웹 학습노트입니다. 최근 9개년(41~49회, 2018~2026) 기출을 전부 분해해 3과목을 각 10단원으로 정리했습니다.</p>
+    <div class="stat">
+      <div><b>3</b><span>과목</span></div>
+      <div><b>30</b><span>단원</span></div>
+      <div><b>720</b><span>암기카드</span></div>
+      <div><b>243</b><span>예상문제</span></div>
+      <div><b>293</b><span>기출문제</span></div>
+      <div><b>135</b><span>계산예제</span></div>
+    </div>
+    <p style="margin-bottom:0">가입도 로그인도 없습니다. <b>주소를 열고 비밀번호 4자리만 넣으면 바로 씁니다.</b></p>
+  </div>
+
+  <a class="url" href="./">https://aonebiz.github.io/jaemul/</a>
+
+  <div class="ok">
+    <b>비밀번호는 <span style="font-size:1.15em;letter-spacing:0.15em">0829</span> 입니다.</b><br>
+    주소를 열면 숫자 입력창이 먼저 뜹니다. 네 번째 숫자를 넣는 순간 자동으로 열립니다.<br>
+    한 번 넣으면 <b>그 기기에서는 다시 묻지 않습니다.</b>
+  </div>
+  <div class="warn">
+    공유받은 분만 보시라고 걸어둔 <b>최소한의 잠금</b>입니다. 정식 보안이 아니니 <b>링크와 비밀번호를 단톡방 등에 퍼뜨리지 말아 주세요.</b>
+  </div>
+
+  <h2>1. 설치 — 홈 화면에 올려두기</h2>
+  <p>그냥 즐겨찾기로 쓰셔도 됩니다. 다만 홈 화면에 올려두면 <b>앱처럼 아이콘으로 바로 열리고 주소창 없이 전체화면</b>으로 뜹니다. 매일 볼 거라면 해두는 편이 낫습니다.</p>
+
+  <div class="grid">
+    <div class="box">
+      <h3>아이폰 · 아이패드</h3>
+      <ol class="steps">
+        <li><b>사파리</b>로 위 주소를 엽니다</li>
+        <li>아래 가운데 <b>공유 버튼</b>(네모에 화살표)을 누릅니다</li>
+        <li>목록을 내려 <b>홈 화면에 추가</b>를 누릅니다</li>
+        <li>오른쪽 위 <b>추가</b>를 누르면 끝입니다</li>
+      </ol>
+      <p style="font-size:0.84rem;color:var(--muted);margin:0">크롬이 아니라 <b>사파리</b>로 열어야 합니다.</p>
+    </div>
+    <div class="box">
+      <h3>갤럭시 · 안드로이드</h3>
+      <ol class="steps">
+        <li><b>크롬</b> 또는 <b>삼성 인터넷</b>으로 주소를 엽니다</li>
+        <li>화면 아래나 주소창에 <b>앱 설치</b> 안내가 뜨면 누릅니다</li>
+        <li>안 뜨면 오른쪽 위 <b>⋮</b> 메뉴를 누릅니다</li>
+        <li><b>홈 화면에 추가</b>(또는 앱 설치)를 누릅니다</li>
+      </ol>
+    </div>
+  </div>
+  <div class="ok">설치가 끝나면 홈 화면에 <b>초록색 아이콘</b>이 생기고 이름은 <b>재물손해사정</b>으로 들어갑니다.</div>
+
+  <h3>PC에서는</h3>
+  <p>주소를 열고 <kbd>Ctrl</kbd>+<kbd>D</kbd>로 즐겨찾기에 넣으면 충분합니다. 크롬이라면 주소창 오른쪽의 설치 아이콘(⊕)을 눌러 앱으로 만들 수도 있습니다.</p>
+
+  <h2>2. 화면 구조</h2>
+  <p>위쪽 탭에서 <b>과목</b>을 고르고, 그 아래 둥근 버튼에서 <b>모드</b>를 고릅니다. 가운데 목록이 <b>단원</b>입니다.</p>
+  <div class="scroller">
+  <table>
+    <tr><th>모드</th><th>무엇을 하는 곳인가</th></tr>
+    <tr><td><b>교재</b></td><td>단원 본문입니다. 개념부터 순서대로 읽습니다.</td></tr>
+    <tr><td><b>계산</b></td><td>기출 계산문제를 단계별로 풉니다. <b>여기가 합격을 가릅니다.</b></td></tr>
+    <tr><td><b>암기카드</b></td><td>눌러서 뒤집습니다. 안다/모른다를 체크하면 진도에 반영됩니다.</td></tr>
+    <tr><td><b>예상문제</b></td><td>풀고 모범답안을 보며 스스로 채점합니다.</td></tr>
+    <tr><td><b>기출문제</b></td><td>실제 출제된 문항과 답안입니다.</td></tr>
+  </table>
+  </div>
+
+  <h2>2-1. 배지 읽는 법</h2>
+  <div class="scroller">
+  <table>
+    <tr><th>배지</th><th>뜻</th></tr>
+    <tr><td><b>★★★ 41·43·49회</b></td><td>별은 출제 빈도, 숫자는 <b>실제로 출제된 회차</b>입니다. 41회=2018년, 49회=2026년.</td></tr>
+    <tr><td><b>27년 80%</b></td><td><b>2027년(50회) 출제 가능성 추정치</b>입니다. 50% 이상은 붉은색, 30~49%는 노란색, 30% 미만은 회색.</td></tr>
+  </table>
+  </div>
+  <p>27년 %는 지어낸 숫자가 아닙니다. 41~49회 기출을 논점 단위로 쪼개 <b>452건</b>을 만든 뒤, “과거에 이런 이력이던 항목이 실제로 그 다음 해에 몇 % 나왔는가”를 역으로 센 값입니다. 쓰는 변수는 둘뿐입니다 — <b>9년 중 몇 번 나왔는가</b>, <b>마지막 출제 이후 몇 년 지났는가</b>. 참고로 재물은 신체보다 반복률이 높아, 고빈도 논점의 재출제율이 <b>82%</b>로 측정됐습니다.</p>
+  <div class="warn">
+    <b>예측이 아니라 추정치입니다.</b> 출제위원은 매년 바뀌고, 최근 3개년만 봐도 9년간 선례가 없던 주제가 회차당 4~9개씩 나왔습니다.
+    <b>공부 순서를 정하는 용도</b>로만 쓰시고, 30% 미만이라고 버리지는 마세요.
+  </div>
+
+  <h2>3. 공부 순서</h2>
+  <ol class="steps">
+    <li><b>해상보험 0단원부터</b> 읽습니다. 과목 지도와 답안 형식, 영문 약어 대조표가 먼저 나옵니다. 해상은 백지에서 시작해도 순서대로 읽으면 따라갈 수 있게 짰습니다.</li>
+    <li><b>적하(2~4단원) → 선박(5~8단원) → 특종·상법(9단원)</b> 순으로 갑니다. 선박 계산은 ITC 조항을 먼저 알아야 풀립니다.</li>
+    <li><b>책임·화재·기술보험은 1·2단원이 먼저</b>입니다. 보험가액 구하는 법과 일부보험·중복보험 계산식을 모르면 4·5·6단원 계산이 통째로 막힙니다.</li>
+    <li><b>회계원리는 0단원을 건너뛰지 마세요.</b> 차변·대변이 무엇인지부터 시작합니다. 5단원(현재가치)을 모르면 6단원(금융자산)이 안 풀립니다.</li>
+    <li>막히면 <b>9단원 원가관리회계</b>로 돌리세요. 재무회계와 독립이라 0·2단원만 알면 먼저 봐도 됩니다.</li>
+  </ol>
+
+  <h2>4. 진도 기록</h2>
+  <p>암기카드의 <b>안다/모른다</b>와 예상문제의 체크는 자동으로 저장됩니다. <b>홈</b> 탭에서 과목별 진행률을 볼 수 있습니다.</p>
+  <div class="warn">
+    기록은 <b>그 기기의 브라우저에만</b> 저장됩니다. 아이폰에서 체크한 것이 PC로 넘어가지 않습니다.<br>
+    브라우저 <b>인터넷 사용 기록·쿠키를 삭제</b>하면 진도도 함께 지워지고, 비밀번호도 다시 묻습니다. 시크릿 모드에서도 저장되지 않습니다.
+  </div>
+
+  <h2>5. 자주 묻는 것</h2>
+  <div class="scroller">
+  <table>
+    <tr><th>질문</th><th>답</th></tr>
+    <tr><td>로그인해야 하나요?</td><td>아니요. 가입도 로그인도 없고, 비밀번호 <b>0829</b> 네 자리만 넣으면 됩니다.</td></tr>
+    <tr><td>비밀번호를 매번 넣나요?</td><td>아니요. 기기마다 처음 한 번만 넣습니다.</td></tr>
+    <tr><td>돈이 드나요?</td><td>전혀 들지 않습니다.</td></tr>
+    <tr><td>데이터를 많이 쓰나요?</td><td>처음 열 때 약 2.3MB를 받고, 이후에는 거의 쓰지 않습니다.</td></tr>
+    <tr><td>비행기 모드에서도 되나요?</td><td>한 번 연 뒤에는 대개 열립니다. 미리 한 번 열어두세요.</td></tr>
+    <tr><td>내용이 바뀌면?</td><td>주소가 그대로라 새로고침만 하면 최신 내용이 나옵니다.</td></tr>
+    <tr><td>화면이 깨져 보여요</td><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd>(아이폰은 앱을 껐다 켜기)로 새로고침하세요.</td></tr>
+  </table>
+  </div>
+
+  <h2>6. 내용에 관한 주의</h2>
+  <div class="warn">
+    <b>수치는 원문 대조가 필요합니다.</b> 약관 조항·한도·공제금액·회계기준은 개정됩니다. 이 노트의 수치는 41~49회 기출 답안에서 실제 적용된 값이므로,
+    시험 전 최신 협회약관(ICC·ITC)·국문약관·상법·K-IFRS로 확인하세요.<br><br>
+    기출 모범답안 자체에 오기가 있는 경우가 있어, 확인된 것은 정정값을 쓰고 그 사실을 각 문제의 “자주 틀리는 곳”에 적어두었습니다.
+  </div>
+
+  <footer>
+    재물손해사정사 2차 · 41~49회(2018~2026) 기출 분석 기반 · 3과목 30단원<br>
+    개인 학습용으로 만든 자료입니다.
+  </footer>
+
+</div>
+
+</body>
+</html>
